@@ -10,8 +10,12 @@ import { NavbarComponent } from "./components/navbar/navbar.component";
 import { UsersListComponent } from "./components/users-list/users-list.component";
 import { UserListItemComponent } from "./components/user-list-item/user-list-item.component";
 import { HttpClientModule } from "@angular/common/http";
-import { UserInfoComponent } from './components/user-info/user-info.component';
-import { PostsComponent } from './components/posts/posts.component';
+import { UserInfoComponent } from "./components/user-info/user-info.component";
+import { PostsComponent } from "./components/posts/posts.component";
+import { FormsModule } from "@angular/forms";
+import { ToastMessageComponent } from "./components/toast-message/toast-message.component";
+import { ToastModule } from "primeng/toast";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 
 @NgModule({
   declarations: [
@@ -23,9 +27,17 @@ import { PostsComponent } from './components/posts/posts.component';
     UsersListComponent,
     UserListItemComponent,
     UserInfoComponent,
-    PostsComponent
+    PostsComponent,
+    ToastMessageComponent
   ],
-  imports: [BrowserModule, AppRoutingModule, HttpClientModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    HttpClientModule,
+    FormsModule,
+    ToastModule,
+    BrowserAnimationsModule
+  ],
   providers: [],
   bootstrap: [AppComponent]
 })

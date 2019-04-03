@@ -17,4 +17,8 @@ export class UsersService {
   getUserById(id: string) {
     return this.http.get(`${this.apiUrl}/users/${id}`);
   }
+
+  editUserById(id: number, user) {
+    return this.http.put(`${this.apiUrl}/users/${id}`, user);
+  }
 }

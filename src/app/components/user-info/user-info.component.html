@@ -1,3 +1,89 @@
-<p>
-  user-info works!
-</p>
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-lg-8 offset-lg-2 col-md-12">
+      <button class="btn btn-info mr-2">Back</button>
+      <button class="btn btn-primary" (click)="onEditClick()">Edit</button>
+      <div
+        class="alert alert-danger"
+        *ngIf="editUserForm.invalid && editUserForm.dirty"
+      >
+        Fill in correct info, please!
+      </div>
+      <app-toast-message></app-toast-message>
+      <form class="mt-2" #editUserForm="ngForm" (ngSubmit)="onFormSubmit()">
+        <div class="form-group">
+          <label for="name">Name:</label>
+          <input
+            type="text"
+            name="name"
+            [ngModel]="user?.name"
+            (ngModelChange)="user.name = $event"
+            [readonly]="readonly"
+            class="form-control"
+            id="name"
+            required
+            minlength="2"
+            maxlength="50"
+          />
+        </div>
+        <div class="form-group">
+          <label for="username">User name:</label>
+          <input
+            type="text"
+            name="username"
+            [ngModel]="user?.username"
+            (ngModelChange)="user.username = $event"
+            [readonly]="readonly"
+            class="form-control"
+            id="username"
+            required
+            pattern="^[a-zA-Z]+$"
+            minlength="2"
+            maxlength="25"
+          />
+        </div>
+        <div class="form-group">
+          <label for="email">Email address:</label>
+          <input
+            type="email"
+            name="email"
+            [ngModel]="user?.email"
+            (ngModelChange)="user.email = $event"
+            [readonly]="readonly"
+            class="form-control"
+            id="email"
+            required
+            email
+          />
+        </div>
+        <div class="form-group">
+          <label for="tel">Phone:</label>
+          <input
+            type="tel"
+            name="phone"
+            [ngModel]="user?.phone"
+            (ngModelChange)="user.phone = $event"
+            [readonly]="readonly"
+            class="form-control"
+            id="tel"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="website">Website:</label>
+          <input
+            type="url"
+            name="website"
+            [ngModel]="user?.website"
+            (ngModelChange)="user.website = $event"
+            [readonly]="readonly"
+            class="form-control"
+            id="website"
+            required
+          />
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+    </div>
+  </div>
+</div>
