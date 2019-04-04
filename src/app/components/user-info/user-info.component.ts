@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from "@angular/core";
-import { ActivatedRoute } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 import { UsersService } from "src/app/services/users.service";
 import { ToastMessageComponent } from "../toast-message/toast-message.component";
 
@@ -14,12 +14,13 @@ export class UserInfoComponent implements OnInit {
   user;
   readonly = true;
   constructor(
-    private route: ActivatedRoute,
-    private usersService: UsersService
+    private activedRoute: ActivatedRoute,
+    private usersService: UsersService,
+    private router: Router
   ) {}
 
   ngOnInit() {
-    const id = this.route.snapshot.params["id"];
+    const id = this.activedRoute.snapshot.params["id"];
     this.usersService.getUserById(id).subscribe(
       data => {
         this.user = data;
@@ -38,7 +39,9 @@ export class UserInfoComponent implements OnInit {
     this.usersService.editUserById(this.user.id, this.user).subscribe(
       data => {
         this.toast.showSuccess();
-        //link to home:
+        setTimeout(() => {
+          this.router.navigate(["/"]);
+        }, 3000);
       },
       err => {
         console.log(err);

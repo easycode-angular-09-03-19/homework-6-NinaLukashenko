@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute, ParamMap } from "@angular/router";
 import { PostsService } from "../../services/posts.service";
+import { Post } from "../../interfaces/post";
 
 @Component({
   selector: "app-posts",
@@ -9,7 +10,7 @@ import { PostsService } from "../../services/posts.service";
 })
 export class PostsComponent implements OnInit {
   currentUserId: string;
-  posts;
+  posts: Post[];
   constructor(
     private route: ActivatedRoute,
     private postsService: PostsService
@@ -18,9 +19,12 @@ export class PostsComponent implements OnInit {
   ngOnInit() {
     this.route.queryParamMap.subscribe((param: ParamMap) => {
       this.currentUserId = param.get("userId");
-      this.postsService.getPostsByUserId(this.currentUserId).subscribe(data => {
-        this.posts = data;
-      });
+      this.postsService
+        .getPostsByUserId(this.currentUserId)
+        .subscribe((data: Post[]) => {
+          this.posts = data;
+          console.log(this.posts);
+        });
     });
   }
 }
