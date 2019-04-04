@@ -1,0 +1,19 @@
+<div class="card shadow mb-2">
+  <div class="card-body">
+    <h4 class="card-title  text-center">{{ user?.name }}</h4>
+    <p class="card-text">User id: {{ user?.id }}</p>
+    <p class="card-text">User email: {{ user?.email }}</p>
+    <!-- <a href="#" class="btn btn-info mr-2" [routerLink]="['/user', user?.id]"
+      >Info</a
+    >
+    <a
+      href="#"
+      class="btn btn-info"
+      [routerLink]="['posts']"
+      [queryParams]="{ userId: user?.id }"
+      >User posts</a
+    > -->
+    <button class="btn btn-info mr-2" (click)="onInfoClick()">Info</button>
+    <button class="btn btn-info" (click)="onPostsClick()">Posts</button>
+  </div>
+</div>
