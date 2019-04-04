@@ -23,7 +23,6 @@ export class PostsComponent implements OnInit {
         .getPostsByUserId(this.currentUserId)
         .subscribe((data: Post[]) => {
           this.posts = data;
-          console.log(this.posts);
         });
     });
   }
